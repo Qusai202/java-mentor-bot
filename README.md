@@ -1,12 +1,12 @@
 # Java Mentor Bot 🤖☕
 
-An AI-powered, beginner-friendly educational chatbot built with Java.
-The bot helps students learn Java programming interactively through a
-console-based interface.
+Java Mentor Bot is an AI-powered, beginner-friendly educational chatbot built with Java.
+It helps students learn Java programming interactively through a console-based interface.
 
 ## 🎯 Project Goal
-To provide clear, step-by-step explanations of core Java concepts using
-a combination of a local knowledge base and AI-generated responses.
+To provide clear, step-by-step explanations of core Java concepts by combining:
+- A local knowledge base for fast, reliable answers
+- AI-generated responses for dynamic explanations
 
 ## 🛠 Tools & Technologies
 - Java 17+
@@ -17,23 +17,26 @@ a combination of a local knowledge base and AI-generated responses.
 
 ## 🧠 Key Concepts Applied
 - Object-Oriented Programming (OOP)
-- Clean Architecture (UI, Business Logic, AI Layer)
+- Clean Architecture (UI, Business Logic, AI Integration)
 - Retrieval-Augmented Generation (RAG)
 - Prompt Engineering for educational responses
-- Safe API request/response handling
+- Safe and efficient API request/response handling
 
 ## ⚠️ Note
-This is a demo project. Due to API key limitations, the bot may not answer
-every possible Java question, but it works perfectly for core concepts.
+This is a demo project. Due to API key limitations, the bot may not answer every
+possible Java question, but it works perfectly for core Java concepts and provides
+step-by-step explanations.
 
 ## 🚀 What I Learned
-- Integrating AI into Java applications
-- Designing scalable educational tools
-- Applying prompt engineering in real applications
+- Hands-on experience integrating AI into Java applications
+- Designing layered and scalable educational architectures
+- Applying prompt engineering in real-world use cases
 
 ## 🔮 Future Improvements
 - GUI-based version
 - Web-based version
-- Expanded knowledge base
-## Environment Variables
+- Expanded and more advanced knowledge base
+
+## 🔐 Environment Variables
+```env
 OPENAI_API_KEY=your_api_key_here

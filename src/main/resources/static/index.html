@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Mentor AI</title>
+    <!-- استدعاء خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات اللونية */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --user-msg-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --bot-msg-bg: #ffffff;
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* حاوية الشات الرئيسية */
+        .chat-wrapper {
+            width: 100%;
+            max-width: 450px;
+            height: 85vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* رأس الشات */
+        .header {
+            background: #fff;
+            padding: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .header h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 12px;
+            color: #10b981; /* لون "Online" */
+            font-weight: 500;
+        }
+
+        /* منطقة الرسائل */
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            scroll-behavior: smooth;
+        }
+
+        /* تنسيق الرسائل */
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            word-wrap: break-word;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot {
+            background: var(--bot-msg-bg);
+            color: #475569;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .user {
+            background: var(--user-msg-bg);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        /* منطقة الإدخال */
+        .input-area {
+            background: white;
+            padding: 15px 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #f1f5f9;
+            border-radius: 50px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.5);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* أيقونة الإرسال */
+        .send-icon {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            margin-left: 2px; /* تصحيح بصري */
+        }
+
+        /* شريط التمرير */
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-box::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-wrapper">
+    <!-- الرأس -->
+    <div class="header">
+        <div class="header-info">
+            <div class="avatar">JB</div>
+            <div>
+                <h3>Java Mentor</h3>
+                <p>● Online (AI Powered)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- منطقة المحادثة -->
+    <div class="chat-box" id="chatBox">
+        <div class="message bot">Hello! I am your Java Mentor. Ask me anything about programming concepts.</div>
+    </div>
+
+    <!-- منطقة الإدخال -->
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type a Java question..." onkeypress="handleEnter(event)">
+        <button onclick="sendMessage()">
+            <svg class="send-icon" viewBox="0 0 24 24">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+
+    function handleEnter(e) {
+        if (e.key === 'Enter') sendMessage();
+    }
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        // عرض رسالة المستخدم مع الحركة
+        addMessage(message, 'user');
+        userInput.value = '';
+
+        try {
+            // إرسال للسيرفر
+            const response = await fetch('http://localhost:8080/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            
+            // عرض إجابة البوت
+            addMessage(data.reply, 'bot');
+        } catch (error) {
+            addMessage("Error: Could not connect to the mentor server.", 'bot');
+        }
+    }
+
+    function addMessage(text, sender) {
+        const div = document.createElement('div');
+        div.className = `message ${sender}`;
+        div.innerText = text;
+        chatBox.appendChild(div);
+        
+        // التمرير للأسفل تلقائياً
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

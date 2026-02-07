@@ -35,3 +35,5 @@ every possible Java question, but it works perfectly for core concepts.
 - GUI-based version
 - Web-based version
 - Expanded knowledge base
+## Environment Variables
+OPENAI_API_KEY=your_api_key_here

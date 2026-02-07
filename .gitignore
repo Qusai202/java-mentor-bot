@@ -1,0 +1,10 @@
+# Maven / Java
+target/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Environment variables
+.env

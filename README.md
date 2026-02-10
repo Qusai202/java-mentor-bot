@@ -62,6 +62,7 @@ java-mentor-bot/
 │
 ├── pom.xml
 └── README.md
+---
 
 🚀 Key Learning Outcomes
 
@@ -74,6 +75,8 @@ Applying prompt engineering for educational use cases
 Implementing RAG to improve reliability and control AI output
 
 Handling external API communication safely and efficiently
+
+---
 
 ⚠️ Limitations
 
@@ -89,6 +92,7 @@ Web-based version (REST API + Frontend)
 Expanded knowledge base with advanced Java topics
 
 User progress tracking and learning analytics
+---
 
 🎯 Why This Project Matters
 

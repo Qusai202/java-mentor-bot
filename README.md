@@ -63,16 +63,6 @@ java-mentor-bot/
 ├── pom.xml
 └── README.md
 
-
----
-
-## 🔐 Environment Configuration
-
-Create a `.env` file or configure environment variables:
-
-```env
-OPENAI_API_KEY=your_api_key_here
-
 🚀 Key Learning Outcomes
 
 Integrating AI APIs into Java backend applications
@@ -109,3 +99,14 @@ Practical AI integration in backend systems
 Clean architecture principles
 
 Educational-focused AI design
+
+
+---
+
+## 🔐 Environment Configuration
+
+Create a `.env` file or configure environment variables:
+
+```env
+OPENAI_API_KEY=your_api_key_here
+
